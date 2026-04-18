@@ -72,6 +72,16 @@ def get_chats():
 
     return jsonify(users.get(user_id, {}).get("chats", []))
 
+@app.route("/chat", methods=["POST"])
+def chat():
+    data = request.json
+    message = data.get("message")
+
+    # 🔥 هنا الذكاء الاصطناعي (مؤقت)
+    reply = f"تم استلام رسالتك: {message}"
+
+    return jsonify({"reply": reply})
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
