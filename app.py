@@ -82,6 +82,11 @@ def chat():
 
     return jsonify({"reply": reply})
 
+@app.route("/debug")
+def debug():
+    users = load_data()
+    return jsonify(users)
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
