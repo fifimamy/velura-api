@@ -82,6 +82,10 @@ def chat():
 
     return jsonify({"reply": reply})
 
+@app.route("/")
+def home():
+    return "Server running"
+
 @app.route("/debug")
 def debug():
     users = load_data()
