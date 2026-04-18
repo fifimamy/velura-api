@@ -1,0 +1,10 @@
+{
+  "name": "fifi",
+  "age": 15,
+  "gender": "Female",
+  "height_cm": 165,
+  "weight_kg": 52,
+  "chronic_diseases": [],
+  "allergies": [],
+  "other_user_notes": ""
+}

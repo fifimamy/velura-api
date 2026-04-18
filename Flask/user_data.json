@@ -1,0 +1,16 @@
+{
+  "name": "Fifi",
+  "age": 15,
+  "gender": "female",
+  "height_cm": 165,
+  "weight_kg": 59,
+  "chronic_diseases": [
+    "heart_disease",
+    "copd"
+  ],
+  "allergies": [
+    "animal_dander",
+    "certain_medications"
+  ],
+  "other_user_notes": ""
+}

@@ -1,0 +1,16 @@
+[
+    [],
+    [],
+    {
+        "user_message": "Sometimes I feel shortness of breath when climbing stairs.",
+        "ai_reply": "I'm sorry that you've been experiencing shortness of breath while climbing stairs. This sensation might be due to factors such as physical exertion, dehydration, or underlying health conditions. Staying hydrated by drinking enough fluids can help alleviate this symptom and others related to maintaining lung function.\n\nCould you share when and under what circumstances this happens? Also, are there other symptoms like coughing, chest pain, or fatigue that accompany your shortness of breath?\n\nTo manage your well-being, it's important to maintain a balanced diet with adequate water intake throughout the day. Avoid heavy meals right before physical activities as they might cause discomfort and affect your energy levels.\n\nIf this symptom continues or becomes more severe, consulting a healthcare professional would be advisable for personalized advice tailored to your specific situation.",
+        "confidence_score": 1,
+        "evaluation": "Medium confidence"
+    },
+    {
+        "user_message": "أصاب بصداع تقريبًا كل أسبوع، ما السبب المحتمل؟",
+        "ai_reply": "أنا أشعر بالأسف أنك تواجه الصداع بشكل دوري كل أسبوع. قد يكون للعديد من الأسباب علاقة بالصداع، بما في ذلك التوتر، النقص في النوم، التغذية غير المرضية، أو الإجهاد العاطفي. يمكنك محاولة الاسترخاء ببعض الأساليب، مثل اليوغا أو التأمل، وجعل تغييرات في نمط الحياة ، مثل الالتزام بالهدوء والنظام الغذائي الصحي.\n\nقد يكون من المفيد أيضًا زيادة النوم والتأكد من أنك تحصل على كمية كافية من الراحة. كما يمكن أن يساعد الحفاظ على水平 النيتروجين في الجسم، الذي يمكن تحسينه عن طريق التناول الأثري للخضروات والفواكه الغنية بالفيتامين C.\n\nكيف تشعر بعد هذه التغييرات؟ هل ترى بعض تحسن في حالتك الصحية بعد سعيك نحو الاسترخاء والحفاظ على النظام الغذائي الصحي؟",
+        "confidence_score": 0,
+        "evaluation": "Low confidence"
+    }
+]
