@@ -38,14 +38,12 @@ def save_user():
 
     return jsonify({"status": "saved"})
 
-# ✅ جلب المستخدم
 @app.route("/get_user", methods=["GET"])
 def get_user():
     user_id = request.args.get("user_id")
 
     users = load_data()
     return jsonify(users.get(user_id, {}))
-
 
 # ✅ حفظ المحادثات
 @app.route("/save_chats", methods=["POST"])
