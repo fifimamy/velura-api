@@ -25,15 +25,18 @@ def save_user():
     data = request.json
     user_id = data.get("user_id")
 
-    if not user_id:
-        return jsonify({"error": "user_id required"}), 400
-
     users = load_data()
-    users[user_id] = data
+
+    if user_id not in users:
+        users[user_id] = {}
+
+    # 🔥 حفظ المعلومات الطبية
+    if "medical" in data:
+        users[user_id]["medical"] = data["medical"]
+
     save_data(users)
 
     return jsonify({"status": "saved"})
-
 
 # ✅ جلب المستخدم
 @app.route("/get_user", methods=["GET"])
