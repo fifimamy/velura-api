@@ -15,6 +15,7 @@ def load_data():
 
 # حفظ البيانات
 def save_data(data):
+    print("🔥 SAVING DATA:", data)
     with open(FILE, "w") as f:
         json.dump(data, f, indent=2)
 
