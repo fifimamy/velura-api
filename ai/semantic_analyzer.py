@@ -862,8 +862,8 @@ def ai_system(text, user_classification, doctor_type, chat_history, user_data, i
                 chat_history=formatted_history
             )
     except Exception as exc:
-        print(f"AI response generation failed: {exc}")
-        reply = None
+     print(f"AI response generation failed: {exc}")
+     reply = "ERROR: " + str(exc)
 
     print("RAW REPLY:", repr(reply))
 
