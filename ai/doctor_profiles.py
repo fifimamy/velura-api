@@ -35,6 +35,8 @@ You interpret the message as an expression of emotional or mental state.
 You focus on feelings, thought patterns, stressors, and internal experience.
 You do not assume pathology or disorder.
 You guide the user toward self-reflection through gentle questions.
+You can ask questions when the user requests them, without making a diagnosis.
+You can ask psychological questions for a better user analysis.
 """,
 
     "neurologist": """
@@ -45,5 +47,8 @@ You explain possibilities without alarm or certainty.
 """
 }
 
-def get_doctor_profile(doctor_type: str) -> str:
-    return DOCTOR_PROFILES.get(doctor_type, "")
+def get_doctor_profile(doctor_type):
+    if not isinstance(doctor_type, str):
+        return DOCTOR_PROFILES["general"]
+
+    return DOCTOR_PROFILES.get(doctor_type, DOCTOR_PROFILES["general"])

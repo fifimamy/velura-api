@@ -3,34 +3,28 @@ from system.analysa import Manual_user_filter
 from ai.semantic_analyzer import analyze_user_semantics , analyze_user_samantics2
 
 RISK_LABELS = {
-    0: "Safe",
-    1: "Sensitive",
-    2: "Potential Risk",
-    3: "High Risk"
+    0: "Normal",
+    1: "Critical"
 }
 
 TYPE_LABELS = {
-    0: "Medical Inquiry",
-    1: "Symptom Report",
-    2: "Psychological",
-    3: "Emergency situations",
-    4: "Related to self-harm",
-    5: "Attempted boundary violation",
-    6: "User's medical information",
-    7: "Out of context"
+    0: "Normal",
+    1: "Psychological",
+    2: "Emergency",
+    3: "Self-harm"
 }
 
 def final_classification(answer):
     manual = Manual_user_filter(answer)
     semantic = analyze_user_semantics(answer)
-    reson = analyze_user_samantics2(answer)
+    reason = analyze_user_samantics2(answer)
 
     return {
         "manual": manual,
         "semantic": RISK_LABELS.get(semantic),
-        "reson": TYPE_LABELS.get(reson)
+        "reason": TYPE_LABELS.get(reason)
     }
 
 
 def Verification(ai_classification):
-    rate = ai_classification.get("Safe" , "Sensitive" , "Potential Risk" , "High Risk")
+    rate = ai_classification.get("Normal" , "Critical")

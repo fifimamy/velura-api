@@ -2,9 +2,6 @@ from system.simple_analysis import analyze_text
 from system.user_masseg import user_masseg
 
 
-
-
-
 def Manual_user_filter (answer):
  text = analyze_text(answer)
  if text == "anxiety":
