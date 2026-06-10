@@ -110,7 +110,7 @@ def generate_standard_response(text,doctor_profile,user_info, language=None,imag
 
  Repeatedly greeting and introducing the user is strictly prohibited.
  """
-    return query_model(full_prompt, model_name="qwen2:latest")
+    return query_model(full_prompt)
 
 
 def generate_self_harm_response(text, language=None, image_analysis=None):
@@ -135,7 +135,7 @@ def generate_self_harm_response(text, language=None, image_analysis=None):
 
     """
 
-    return query_model(full_prompt, model_name="qwen2:latest")
+    return query_model(full_prompt)
 
 
 def generate_emergency_response(text, language=None, image_analysis=None):
@@ -160,7 +160,7 @@ def generate_emergency_response(text, language=None, image_analysis=None):
     
     """
 
-    return query_model(full_prompt, model_name="qwen2:latest")
+    return query_model(full_prompt)
 
 def refine_response(text, ai_reply, user_data):
     full_prompt = f"""
@@ -185,7 +185,7 @@ def refine_response(text, ai_reply, user_data):
  Review the original response and refine it to better align with the user's profile and the guidelines provided. Ensure that the refined response is safe, relevant, and consistent with the user's medical history and current condition.
  """
 
-    return query_model(full_prompt, model_name="qwen2:latest")
+    return query_model(full_prompt)
 
 def title_creator(text, language=None):
     full_prompt = f"""
@@ -198,7 +198,7 @@ def title_creator(text, language=None):
     Generate a concise and relevant title for the user's message that captures the main topic or concern expressed in the message. The title should be informative and reflect the content of the user's message accurately.
  """
 
-    return query_model(full_prompt, model_name="qwen2:latest")
+    return query_model(full_prompt)
 
 def Image_captioner(image_base64):
 
@@ -246,7 +246,7 @@ def classify_user_message(text):
     {text}
     """
 
-    return query_model(full_prompt, model_name="qwen2:latest")
+    return query_model(full_prompt)
 
 def resume_message(text):
     full_prompt = f"""
@@ -255,7 +255,7 @@ def resume_message(text):
     {text}
     """
 
-    return query_model(full_prompt, model_name="qwen2:latest")
+    return query_model(full_prompt)
 
 def classify_resume(text):
     full_prompt = f"""
@@ -264,7 +264,7 @@ def classify_resume(text):
     {text}
     """
 
-    return query_model(full_prompt, model_name="qwen2:latest")
+    return query_model(full_prompt)
 
 def detect_duplicate(text, user_info, user_info2):
     full_prompt = f"""
@@ -276,10 +276,11 @@ def detect_duplicate(text, user_info, user_info2):
     {text}
     """
 
-    return query_model(full_prompt, model_name="qwen2:latest")
+    return query_model(full_prompt)
 
 def query_model(prompt, model_name="gemini-1.5-flash"):
     api_key = os.getenv("GEMINI_API_KEY")
+    print("API KEY EXISTS:", bool(api_key))
 
     if not api_key:
         print("ERROR: GEMINI_API_KEY not found")
@@ -303,8 +304,13 @@ def query_model(prompt, model_name="gemini-1.5-flash"):
 
         print("GEMINI RAW:", data)
 
-        return data["candidates"][0]["content"]["parts"][0]["text"]
-
+        try:
+         return data["candidates"][0]["content"]["parts"][0]["text"]
+        except Exception as e:
+         print("BAD GEMINI RESPONSE:", data)
+         print("PARSE ERROR:", e)
+        return "عذرًا، حدث خطأ داخلي أثناء تجهيز الرد."
     except Exception as e:
         print("GEMINI ERROR:", e)
-        return "عذرًا، حدث خطأ داخلي أثناء تجهيز الرد."
+        return "عذرًا، حدث خطأ في الاتصال بنموذج اللغة."
+        
