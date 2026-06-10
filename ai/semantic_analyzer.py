@@ -796,7 +796,7 @@ def ai_system(text, user_classification, doctor_type, chat_history, user_data, i
                 print(i, repr(str(msg)[:50]))
     except Exception as exc:
         print(f"Failed to print raw history: {exc}")
-
+        reply = "ERROR: " + str(exc)
     # normalize ordering to oldest -> newest when possible
     norm_history = normalize_history(chat_history or [])
 
@@ -878,8 +878,8 @@ def ai_system(text, user_classification, doctor_type, chat_history, user_data, i
                 image_analysis=image_analysis
             )
         except Exception as exc:
-            print(f"Fallback response generation failed: {exc}")
-            reply = "عذرًا، حدث خطأ داخلي أثناء تجهيز الرد."
+         print(f"AI response generation failed: {exc}")
+         reply = "ERROR: " + str(exc)
 
     print("LANGUAGE CHECK FAILED")
 
