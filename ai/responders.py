@@ -294,6 +294,8 @@ def query_model(prompt, model_name="gemini-1.0-pro"):
         ]
     }
 
+    
+
     try:
         response = requests.post(url, json=payload, timeout=60)
         data = response.json()
