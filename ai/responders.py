@@ -1,3 +1,5 @@
+from urllib import response
+
 from ai.Prompts import DUPLICATE_DETECTOR,CLASSIFYING_IMPORTANT,RESUME_IMPORTANT,USER_INFO_IMPORTANT,CONVERSATION_RULES,IMAGE_PROMPT, TITLE_GENERATION_PROMPT, SYSTEM_IDENTITY, SYSTEM_BEHAVIOR, SYSTEM_SAFETY, SELF_HARM_GUIDED_PROMPT,EMERGENCY_GUIDED_PROMPT, REFINER_BEHAVIOR,REFINER_IDENTITY,REFINER_RULES,REFINER_SAFETY
 import requests
 import os
@@ -281,6 +283,8 @@ def detect_duplicate(text, user_info, user_info2):
 def query_model(prompt, model_name="gemini-1.0-pro"):
     api_key = os.getenv("GEMINI_API_KEY")
 
+    print("API KEY START =", api_key[:10])
+
     if not api_key:
         return "ERROR: Missing API key"
 
@@ -298,6 +302,8 @@ def query_model(prompt, model_name="gemini-1.0-pro"):
 
     try:
         response = requests.post(url, json=payload, timeout=60)
+        print(response.status_code)
+        print(response.text)
         data = response.json()
 
         print("GEMINI RAW RESPONSE:", data)  # مهم جداً للتصحيح
@@ -310,6 +316,7 @@ def query_model(prompt, model_name="gemini-1.0-pro"):
             return "ERROR_EMPTY_CANDIDATES"
 
         return data["candidates"][0]["content"]["parts"][0].get("text", "")
+
 
     except Exception as e:
         return f"ERROR_EXCEPTION: {str(e)}"
