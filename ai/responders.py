@@ -207,7 +207,7 @@ def Image_captioner(image_base64):
     if not api_key:
         return "No API key"
 
-    url = f"https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key={api_key}"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.0-pro-vision:generateContent?key={api_key}"
 
     payload = {
         "contents": [
@@ -278,13 +278,13 @@ def detect_duplicate(text, user_info, user_info2):
 
     return query_model(full_prompt)
 
-def query_model(prompt, model_name="gemini-pro"):
+def query_model(prompt, model_name="gemini-1.0-pro"):
     api_key = os.getenv("GEMINI_API_KEY")
 
     if not api_key:
         return "ERROR: Missing API key"
 
-    url = f"https://generativelanguage.googleapis.com/v1/models/{model_name}:generateContent?key={api_key}"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
 
     payload = {
         "contents": [
