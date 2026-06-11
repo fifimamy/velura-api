@@ -3,6 +3,8 @@ from flask import Flask, request, jsonify
 import json
 import os
 import base64
+
+import requests
 from system.chat_engine import process_chat
 from ai.semantic_analyzer import (
     format_chat_for_display,
@@ -13,11 +15,6 @@ from ai.semantic_analyzer import (
 )
 from system.firebase import load_user, load_all_users, update_user
 
-
-print("================================")
-print("APP.PY IS RUNNING")
-print("GEMINI =", os.getenv("GEMINI_API_KEY"))
-print("================================")
 
 
 def safe_print(*args, **kwargs):
@@ -37,6 +34,15 @@ app = Flask(__name__)
 
 FIREBASE_DB_URL = os.environ.get("FIREBASE_DB_URL", "").rstrip("/")
 
+@app.route("/models")
+def models():
+    api_key = os.getenv("GEMINI_API_KEY")
+
+    r = requests.get(
+        f"https://generativelanguage.googleapis.com/v1beta/models?key={api_key}"
+    )
+
+    return r.text
 
 # ✅ حفظ المستخدم
 @app.route("/save_user", methods=["POST"])
