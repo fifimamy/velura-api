@@ -8,7 +8,7 @@ import builtins
 from ai.doctor_profiles import get_doctor_profile
 from ai.notification_templates import build_notification_for_item
 from ai.Prompts import USER_ANALYSING_PROMPT_1 , USER_ANALYSING_PROMPT_2,AI_ANSWER_PROMPT,PROMPT_AI_CLASSIFICATION,EVALUATION_PROMPT
-from ai.responders import detect_duplicate,classify_resume,resume_message,classify_user_message,Image_captioner, refine_response, generate_emergency_response, generate_self_harm_response, generate_standard_response, title_creator
+from ai.responders import detect_duplicate,classify_resume,resume_message,classify_user_message,Image_captioner, refine_response, generate_emergency_response, generate_self_harm_response, generate_standard_response, title_creator , query_model
 from system.medical_profile import user_information
 from system.firebase import load_firebase_user, save_firebase_user, save_ai_evaluation_to_firebase
 
@@ -969,30 +969,3 @@ def capture_user_medical_summary(user_id, text, user_data=None):
         "pending_notifications": pending,
     }
     
-
-def query_model(prompt, model_name="gemini-1.5-flash"):
-    api_key = os.getenv("GEMINI_API_KEY")
-
-    if not api_key:
-        return "NO API KEY"
-
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
-
-    payload = {
-        "contents": [
-            {
-                "parts": [
-                    {"text": prompt}
-                ]
-            }
-        ]
-    }
-
-    try:
-        response = requests.post(url, json=payload, timeout=60)
-        data = response.json()
-
-        return data["candidates"][0]["content"]["parts"][0]["text"]
-
-    except Exception as e:
-        return f"ERROR: {str(e)}"
