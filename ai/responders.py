@@ -299,8 +299,8 @@ def query_model(prompt, model_name="gemini-1.5-flash"):
 
         # 🔴 1. error handling
         if "error" in data:
-            print("GEMINI ERROR:", data["error"])
-            return "عذرًا، حدث خطأ في النموذج."
+          print("GEMINI ERROR:", data["error"])
+          return str(data["error"])
 
         # 🔴 2. safety block
         if "promptFeedback" in data:
