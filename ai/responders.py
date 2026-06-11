@@ -278,7 +278,7 @@ def detect_duplicate(text, user_info, user_info2):
 
     return query_model(full_prompt)
 
-def query_model(prompt, model_name="gemini-1.5-flash"):
+def query_model(prompt, model_name="gemini-1.0-pro"):
     api_key = os.getenv("GEMINI_API_KEY")
 
     if not api_key:
