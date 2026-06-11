@@ -280,44 +280,33 @@ def detect_duplicate(text, user_info, user_info2):
 
     return query_model(full_prompt)
 
-def query_model(prompt, model_name="gemini-1.0-pro"):
-    api_key = os.getenv("GEMINI_API_KEY")
 
-    print("API KEY START =", api_key[:10])
+def query_model(prompt):
 
-    if not api_key:
-        return "ERROR: Missing API key"
+    api_key = os.getenv("OPENROUTER_API_KEY")
 
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
 
     payload = {
-        "contents": [
+        "model": "meta-llama/llama-3.3-8b-instruct:free",
+        "messages": [
             {
-                "parts": [{"text": prompt}]
+                "role": "user",
+                "content": prompt
             }
         ]
     }
 
+    response = requests.post(
+        "https://openrouter.ai/api/v1/chat/completions",
+        headers=headers,
+        json=payload,
+        timeout=60
+    )
 
+    data = response.json()
 
-    try:
-        response = requests.post(url, json=payload, timeout=60)
-        print(response.status_code)
-        print(response.text)
-        data = response.json()
-
-        print("GEMINI RAW RESPONSE:", data)  # مهم جداً للتصحيح
-
-        # ⛔ لا تسكت على الخطأ
-        if "candidates" not in data:
-            return f"ERROR_NO_CANDIDATES: {data}"
-
-        if not data["candidates"]:
-            return "ERROR_EMPTY_CANDIDATES"
-
-        return data["candidates"][0]["content"]["parts"][0].get("text", "")
-
-
-    except Exception as e:
-        return f"ERROR_EXCEPTION: {str(e)}"
-    
+    return data["choices"][0]["message"]["content"]
