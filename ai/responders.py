@@ -294,7 +294,7 @@ def query_model(prompt, model_name="gemini-1.0-pro"):
         ]
     }
 
-    
+
 
     try:
         response = requests.post(url, json=payload, timeout=60)
@@ -313,3 +313,4 @@ def query_model(prompt, model_name="gemini-1.0-pro"):
 
     except Exception as e:
         return f"ERROR_EXCEPTION: {str(e)}"
+    
