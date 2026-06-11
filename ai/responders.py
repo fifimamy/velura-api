@@ -279,7 +279,11 @@ def detect_duplicate(text, user_info, user_info2):
     return query_model(full_prompt)
 
 def query_model(prompt, model_name="gemini-1.5-flash"):
+    print("========== QUERY MODEL START ==========")
     api_key = os.getenv("GEMINI_API_KEY")
+
+    print("API KEY EXISTS =", bool(api_key))
+    print("MODEL =", model_name)
 
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
 
