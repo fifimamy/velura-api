@@ -294,12 +294,12 @@ def query_model(prompt):
     }
 
     payload = {
-        "model": "google/gemma-3-12b-it:free",
-        "messages": [
-            {
-                "role": "user",
-                "content": prompt
-            }
+      "model": "google/gemma-4-31b-it:free",
+      "messages": [
+          {
+             "role": "user",
+             "content": prompt
+          }
         ]
     }
 
